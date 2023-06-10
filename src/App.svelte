@@ -122,24 +122,24 @@
 		  }
 		},
 		onRowRemoving: async (e) => {
-		  try {
-			const response = await fetch(`https://api.recruitly.io/api/candidate/?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
-			  method: "DELETE",
-			  
-			});
-  
-			if (response.ok) {
-			  // Remove the record from the grid
-			  const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
-			  gridData.splice(removedItemIndex, 1);
-			  dataGrid.refresh();
-			} else {
-			  console.error("Failed to delete record.");
-			}
-		  } catch (error) {
-			console.error("Failed to delete record:", error);
-		  }
-		},
+  try {
+    const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      // Remove the record from the grid
+      const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
+      gridData.splice(removedItemIndex, 1);
+      dataGrid.refresh();
+    } else {
+      console.error("Failed to delete record.");
+    }
+  } catch (error) {
+    console.error("Failed to delete record:", error);
+  }
+},
+
 	  });
   
 	  dataGrid.render();
