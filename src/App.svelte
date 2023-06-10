@@ -25,7 +25,7 @@
 		dataSource: gridData,
 		columns: [
 		  { dataField: "id", caption: "ID" },
-		  { dataField: "firstName", caption: "First Name", dataType: "url" },
+		  { dataField: "firstName", caption: "First Name" },
 		  { dataField: "surname", caption: "Surname" },
 		  { dataField: "email", caption: "Email" },
 		  { dataField: "mobile", caption: "Mobile" },
@@ -54,7 +54,7 @@
 		  },
 		},
 		paging: {
-		  pageSize: 20,
+		  pageSize: 10,
 		},
 		onRowInserting: async (e) => {
 		  const newData = {
@@ -91,7 +91,7 @@
 		onRowUpdating: async (e) => {
 		  const updatedData = {
 			// Provide the updated record data
-			id: e.key,
+			
 			firstName: e.newData.firstName,
 			surname: e.newData.surname,
 			email: e.newData.email,
