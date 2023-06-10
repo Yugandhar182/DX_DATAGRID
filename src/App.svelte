@@ -66,11 +66,11 @@
 		  };
   
 		  try {
-			const response = await fetch("https://api.recruitly.io/api/candidate", {
+			const response = await fetch("https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E", {
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
-				apiKey: "TEST1236C4CF23E6921C41429A6E1D546AC9535E",
+				
 			  },
 			  body: JSON.stringify(newData),
 			});
@@ -99,11 +99,11 @@
 		  };
   
 		  try {
-			const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}`, {
+			const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
-				apiKey: "TEST1236C4CF23E6921C41429A6E1D546AC9535E",
+				
 			  },
 			  body: JSON.stringify(updatedData),
 			});
