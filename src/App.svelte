@@ -6,30 +6,6 @@
 	let jsonData = [];
 	let gridData = [];
   
-	const uploadCV = (id) => {
-	  // Implement the logic to handle the upload CV action
-	  console.log(`Upload CV for ID: ${id}`);
-	};
-  
-	const columns = [
-	  { dataField: "id", caption: "ID" },
-	  { dataField: "firstName", caption: "First Name", cellTemplate: "firstNameCellTemplate" },
-	  { dataField: "surname", caption: "Surname" },
-	  { dataField: "email", caption: "Email" },
-	  { dataField: "mobile", caption: "Mobile" },
-	];
-  
-	const cellTemplates = {
-	  firstNameCellTemplate: (container, options) => {
-		const button = document.createElement("button");
-		button.innerText = "Upload CV";
-		button.addEventListener("click", () => {
-		  uploadCV(options.data.id);
-		});
-		container.appendChild(button);
-	  },
-	};
-  
 	onMount(async () => {
 	  const response = await fetch(
 		"https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E"
@@ -47,7 +23,13 @@
   
 	  const dataGrid = new DevExpress.ui.dxDataGrid(document.getElementById("dataGrid"), {
 		dataSource: gridData,
-		columns: columns,
+		columns: [
+		  { dataField: "id", caption: "ID" },
+		  { dataField: "firstName", caption: "First Name" },
+		  { dataField: "surname", caption: "Surname" },
+		  { dataField: "email", caption: "Email" },
+		  { dataField: "mobile", caption: "Mobile" },
+		],
 		showBorders: true,
 		filterRow: {
 		  visible: true,
@@ -88,6 +70,7 @@
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
+				
 			  },
 			  body: JSON.stringify(newData),
 			});
@@ -108,6 +91,7 @@
 		onRowUpdating: async (e) => {
 		  const updatedData = {
 			// Provide the updated record data
+			
 			firstName: e.newData.firstName,
 			surname: e.newData.surname,
 			email: e.newData.email,
@@ -119,6 +103,7 @@
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
+				
 			  },
 			  body: JSON.stringify(updatedData),
 			});
@@ -137,24 +122,24 @@
 		  }
 		},
 		onRowRemoving: async (e) => {
-		  try {
-			const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
-			  method: "DELETE",
-			});
-  
-			if (response.ok) {
-			  // Remove the record from the grid
-			  const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
-			  gridData.splice(removedItemIndex, 1);
-			  dataGrid.refresh();
-			} else {
-			  console.error("Failed to delete record.");
-			}
-		  } catch (error) {
-			console.error("Failed to delete record:", error);
-		  }
-		},
-		customTemplates: cellTemplates,
+  try {
+    const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      // Remove the record from the grid
+      const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
+      gridData.splice(removedItemIndex, 1);
+      dataGrid.refresh();
+    } else {
+      console.error("Failed to delete record.");
+    }
+  } catch (error) {
+    console.error("Failed to delete record:", error);
+  }
+},
+
 	  });
   
 	  dataGrid.render();
