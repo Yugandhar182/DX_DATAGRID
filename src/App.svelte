@@ -56,13 +56,13 @@ console.log(gridData,"griddata");
 
         columns: [
 
-        { dataField: 'firstName', caption: 'FirstName' },
+        { dataField: 'firstName', caption: 'firstName' },
 
-        { dataField: 'surnname', caption: 'Surname' },
+        { dataField: 'surnname', caption: 'surname' },
 
         { dataField: 'email', caption: 'Email' },
 
-        { dataField: 'mobile', caption: 'Mobile' },
+        { dataField: 'mobile', caption: 'mobile' },
 
         // Define other columns as needed
 
