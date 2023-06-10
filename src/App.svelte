@@ -58,8 +58,6 @@
 		},
 		onRowInserting: async (e) => {
 		  const newData = {
-			// Provide the new record data
-			id:e.data.id,
 			firstName: e.data.firstName,
 			surname: e.data.surname,
 			email: e.data.email,
@@ -71,7 +69,6 @@
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
-				
 			  },
 			  body: JSON.stringify(newData),
 			});
@@ -79,9 +76,9 @@
 			const responseData = await response.json();
 			if (response.ok) {
 			  // Update the grid with the newly added record
-			  e.data.id = responseData.id;
-			  gridData.push(e.data);
-			  dataGrid.refresh();
+			  newData.id = responseData.id;
+			  gridData.push(newData);
+			  dataGrid.instance.refresh();
 			} else {
 			  console.error("Failed to add record:", responseData.error);
 			}
@@ -91,8 +88,6 @@
 		},
 		onRowUpdating: async (e) => {
 		  const updatedData = {
-			// Provide the updated record data
-			
 			firstName: e.newData.firstName,
 			surname: e.newData.surname,
 			email: e.newData.email,
@@ -104,7 +99,6 @@
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
-				
 			  },
 			  body: JSON.stringify(updatedData),
 			});
@@ -114,33 +108,32 @@
 			  // Update the grid with the updated record
 			  const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
 			  gridData[updatedItemIndex] = e.newData;
-			  dataGrid.refresh();
+			  dataGrid.instance.refresh();
 			} else {
-			  console.error("Failed to update records:", responseData.error);
+			  console.error("Failed to update record:", responseData.error);
 			}
 		  } catch (error) {
 			console.error("Failed to update record:", error);
 		  }
 		},
 		onRowRemoving: async (e) => {
-  try {
-    const response = await fetch(`https://api.recruitly.io/api/candidate/${e.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      // Remove the record from the grid
-      const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
-      gridData.splice(removedItemIndex, 1);
-      dataGrid.refresh();
-    } else {
-      console.error("Failed to delete record.");
-    }
-  } catch (error) {
-    console.error("Failed to delete record:", error);
-  }
-},
-
+		  try {
+			const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
+			  method: "DELETE",
+			});
+  
+			if (response.ok) {
+			  // Remove the record from the grid
+			  const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
+			  gridData.splice(removedItemIndex, 1);
+			  dataGrid.instance.refresh();
+			} else {
+			  console.error("Failed to delete record.");
+			}
+		  } catch (error) {
+			console.error("Failed to delete record:", error);
+		  }
+		},
 	  });
   
 	  dataGrid.render();
