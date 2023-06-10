@@ -14,7 +14,7 @@
 
         const response = await fetch(
 
-            "https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154"
+            "https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E"
 
         );
 
@@ -26,15 +26,15 @@
 
         const gridData = jsonData.map(item => ({
 
-    //   id: item.id,
+   
 
-    reference:item.reference,
+   firstname:item.firstName,
 
-      name: item.fullName,
+      surname: item.surnameame,
 
       email:item.email,
 
-      phone:item.mobile,
+      mobile:item.mobile,
 
 
 
@@ -56,13 +56,13 @@ console.log(gridData,"griddata");
 
         columns: [
 
-        { dataField: 'reference', caption: 'ID' },
+        { dataField: 'firstName', caption: 'FirstName' },
 
-        { dataField: 'name', caption: 'Name', dataType: "url" },
+        { dataField: 'surnname', caption: 'Surname' },
 
         { dataField: 'email', caption: 'Email' },
 
-        { dataField: 'phone', caption: 'Mobile' },
+        { dataField: 'mobile', caption: 'Mobile' },
 
         // Define other columns as needed
 
@@ -116,7 +116,7 @@ console.log(gridData,"griddata");
 
                 showTitle: true,
 
-                title: "Row in the editing state"
+                title: "Editing candidate Details"
 
             }
 
@@ -130,15 +130,7 @@ console.log(gridData,"griddata");
 
         // pagination:true,
 
-        pager: {
-
-            showPageSizeSelector: true,
-
-           
-
-            showInfo: true,
-
-        },
+       
 
     });
 
