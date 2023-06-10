@@ -59,6 +59,7 @@
 		onRowInserting: async (e) => {
 		  const newData = {
 			// Provide the new record data
+			id:e.data.id,
 			firstName: e.data.firstName,
 			surname: e.data.surname,
 			email: e.data.email,
