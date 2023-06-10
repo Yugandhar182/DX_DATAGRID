@@ -11,7 +11,7 @@
 	  );
 	  const responseData = await response.json();
 	  jsonData = responseData.data;
-	  console.log(jsonData, "json");
+	 
   
 	  const gridData = jsonData.map((item) => ({
 		id: item.id,
