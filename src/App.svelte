@@ -8,26 +8,28 @@
   
 	onMount(async () => {
 	  const response = await fetch(
-		"https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154"
+		"https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E"
 	  );
   
 	  const responseData = await response.json();
 	  jsonData = responseData.data;
   
 	  const gridData = jsonData.map(item => ({
-		reference: item.reference,
-		name: item.fullName,
+		id: item.id,
+		firstName: item.firstName,
+		surname: item.surname,
 		email: item.email,
-		phone: item.mobile,
+		mobile: item.mobile,
 	  }));
   
 	  var dataGrid = new DevExpress.ui.dxDataGrid("#dataGrid", {
 		dataSource: gridData,
 		columns: [
-		  { dataField: "reference", caption: "ID" },
-		  { dataField: "name", caption: "Name", dataType: "url" },
+		  { dataField: "id", caption: "ID" },
+		  { dataField: "firstName", caption: "First Name" },
+		  { dataField: "surname", caption: "Surname" },
 		  { dataField: "email", caption: "Email" },
-		  { dataField: "phone", caption: "Mobile" },
+		  { dataField: "mobile", caption: "Mobile" },
 		],
 		showBorders: true,
 		filterRow: {
@@ -48,7 +50,7 @@
 		  onRowUpdating: async e => {
 			const updatedData = e.newData;
 			const response = await fetch(
-			  `https://api.recruitly.io/api/candidate/${updatedData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
+			  `https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
 			  {
 				method: "POST",
 				headers: {
