@@ -115,7 +115,7 @@
 			  gridData[updatedItemIndex] = e.newData;
 			  dataGrid.refresh();
 			} else {
-			  console.error("Failed to update record:", responseData.error);
+			  console.error("Failed to update records:", responseData.error);
 			}
 		  } catch (error) {
 			console.error("Failed to update record:", error);
