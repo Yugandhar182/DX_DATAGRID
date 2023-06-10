@@ -15,13 +15,14 @@
 	  jsonData = responseData.data;
 	  console.log(jsonData, "json");
   
-	  const gridData = jsonData.map((item) => ({
-		id: item.id,
-		firstname: item.firstname,
-		surname: item.surname,
-		email: item.email,
-		mobile: item.mobile,
-	  }));
+	  const gridData = jsonData.slice(0, jsonData.length - 1).map((item) => ({
+  id: item.id,
+  firstname: item.firstname,
+  surname: item.surname,
+  email: item.email,
+  mobile: item.mobile,
+}));
+
   
 	  console.log(gridData, "griddata");
   
@@ -29,7 +30,7 @@
 		dataSource: gridData,
 		columns: [
 		  { dataField: "id", caption: "ID" },
-		  { dataField: "firstname", caption: "First Name" },
+		  { dataField: "firstName", caption: "firstName" },
 		  { dataField: "surname", caption: "Surname" },
 		  { dataField: "email", caption: "Email" },
 		  { dataField: "mobile", caption: "Mobile" },
