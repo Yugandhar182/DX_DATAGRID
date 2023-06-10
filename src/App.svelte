@@ -102,6 +102,28 @@
 				console.error("Failed to update row", error);
 			  }
 			},
+			onRowRemoved: async (e) => {
+			  const removedRowData = e.data;
+			  try {
+				const response = await fetch(
+				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  {
+					method: "DELETE",
+				  }
+				);
+  
+				if (response.ok) {
+				  // Handle success
+				  console.log("Row deleted successfully");
+				} else {
+				  // Handle error
+				  console.error("Failed to delete row");
+				}
+			  } catch (error) {
+				// Handle error
+				console.error("Failed to delete row", error);
+			  }
+			},
 		  },
 		  paging: {
 			pageSize: 10,
