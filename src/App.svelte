@@ -181,7 +181,42 @@
 	.custom-popup .dx-button {
 	  margin-top: 10px;
 	}
-  </style>
+	
+ 
+  .custom-popup .dx-popup-title {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  .custom-popup .dx-popup-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .custom-popup .dx-form .dx-item {
+    margin-bottom: 10px;
+  }
+  
+  .custom-popup .dx-form .dx-field-item-label {
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .custom-popup .dx-form .dx-field-item-content {
+    flex-grow: 1;
+  }
+  
+  .custom-popup .dx-button {
+    margin-top: 10px;
+  }
+</style>
+
+ 
   
   <div id="dataGrid"></div>
   
