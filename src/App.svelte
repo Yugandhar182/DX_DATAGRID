@@ -124,7 +124,7 @@ console.log(gridData,"griddata");
 
         paging: {
 
-            pageSize: 10,
+            pageSize: 5,
 
         },
 
@@ -134,7 +134,7 @@ console.log(gridData,"griddata");
 
             showPageSizeSelector: true,
 
-            allowedPageSizes: [5, 10, 20],
+           
 
             showInfo: true,
 
