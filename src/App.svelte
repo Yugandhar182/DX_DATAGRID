@@ -123,7 +123,7 @@
   
 				if (response.ok) {
 				  // Handle success
-				  console.log("Row deleted successfully");
+				  console.log("Row delete successfully");
 				} else {
 				  // Handle error
 				  console.error("Failed to delete row");
@@ -135,11 +135,11 @@
 			},
 		  },
 		  paging: {
-			pageSize: 10,
+			pageSize: 30,
 		  },
 		  pager: {
 			showPageSizeSelector: true,
-			allowedPageSizes: [5, 10, 20],
+			allowedPageSizes: [5, 10, 20 , 30],
 			showInfo: true,
 		  },
 		}
