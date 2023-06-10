@@ -123,11 +123,9 @@
 		},
 		onRowRemoving: async (e) => {
 		  try {
-			const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}`, {
+			const response = await fetch(`https://api.recruitly.io/api/candidate/${e.key}?apiKey:TEST1236C4CF23E6921C41429A6E1D546AC9535E`, {
 			  method: "DELETE",
-			  headers: {
-				apiKey: "TEST1236C4CF23E6921C41429A6E1D546AC9535E",
-			  },
+			  
 			});
   
 			if (response.ok) {
