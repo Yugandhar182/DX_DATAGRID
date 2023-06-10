@@ -67,6 +67,21 @@
 			  console.error("Error updating data:", response.statusText);
 			}
 		  },
+		  onRowRemoving: async e => {
+			const removedData = e.data;
+			const response = await fetch(
+			  `https://api.recruitly.io/api/candidate/${removedData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+			  {
+				method: "DELETE",
+			  }
+			);
+  
+			if (response.ok) {
+			  dataGrid.refresh();
+			} else {
+			  console.error("Error deleting data:", response.statusText);
+			}
+		  },
 		},
 		paging: {
 		  pageSize: 10,
