@@ -11,7 +11,6 @@
 	  );
 	  const responseData = await response.json();
 	  jsonData = responseData.data;
-	 
   
 	  const gridData = jsonData.map((item) => ({
 		id: item.id,
@@ -21,15 +20,17 @@
 		mobile: item.mobile,
 	  }));
   
-	  console.log(gridData, "griddata");
+	  createDataGrid(gridData);
+	});
   
+	function createDataGrid(gridData) {
 	  const dataGrid = new DevExpress.ui.dxDataGrid(
 		document.getElementById("dataGrid"),
 		{
 		  dataSource: gridData,
 		  columns: [
 			{ dataField: "id", caption: "ID" },
-			{ dataField: "firstName", caption: "firstName" },
+			{ dataField: "firstName", caption: "First Name" },
 			{ dataField: "surname", caption: "Surname" },
 			{ dataField: "email", caption: "Email" },
 			{ dataField: "mobile", caption: "Mobile" },
@@ -60,7 +61,7 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: console.log(newRowData),
+					body: JSON.stringify(newRowData),
 				  }
 				);
   
@@ -80,13 +81,13 @@
 			  const updatedRowData = e.data;
 			  try {
 				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
 				  {
 					method: "POST",
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: console.log(updatedRowData),
+					body: JSON.stringify(updatedRowData),
 				  }
 				);
   
@@ -135,7 +136,7 @@
 		  },
 		}
 	  );
-	});
+	}
   </script>
   
   <div id="dataGrid"></div>
