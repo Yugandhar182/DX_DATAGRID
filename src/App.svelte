@@ -136,7 +136,7 @@
 		},
 	  });
   
-	  dataGrid.render();
+	  dataGrid.instance.render();
 	});
   </script>
   
