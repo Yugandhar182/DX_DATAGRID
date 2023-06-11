@@ -13,7 +13,7 @@
 	  jsonData = responseData.data;
   
 	  const gridData = jsonData.map((item) => ({
-		id: item.reference,
+		id: item.id,
 		firstName: item.fullName,
 		surname: item.fullName,
 		email: item.email,
@@ -29,11 +29,11 @@
 		{
 		  dataSource: gridData,
 		  columns: [
-			{ dataField: "id", caption: "ID" },
-			{ dataField: "firstName", caption: "First Name" },
-			{ dataField: "surname", caption: "Surname" },
-			{ dataField: "email", caption: "Email" },
-			{ dataField: "mobile", caption: "Mobile" },
+			{ dataField: "id", caption: "id" },
+			{ dataField: "firstName", caption: "firstName" },
+			{ dataField: "surname", caption: "surname" },
+			{ dataField: "email", caption: "email" },
+			{ dataField: "mobile", caption: "mobile" },
 		  ],
 		  showBorders: true,
 		  filterRow: {
@@ -66,7 +66,7 @@
 				  }
 				);
   
-				console.log(newRowData);
+				
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
