@@ -1,3 +1,4 @@
+<h1 style="color:blue;">Job Candidate Details</h1> 
 <script>
   import { onMount } from "svelte";
   import "bootstrap/dist/css/bootstrap.min.css";
@@ -146,14 +147,4 @@
     });
   });
 </script>
-
-<style>
-  .dx-datagrid .dx-header-row .dx-header-row-lines .dx-column-header {
-    color: blue;
-  }
-</style>
-
-
-<h1 style="color: blue;">Job Candidate Details</h1>
-
 <div id="dataGrid"></div>
