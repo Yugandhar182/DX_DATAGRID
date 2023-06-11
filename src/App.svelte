@@ -148,15 +148,12 @@
 </script>
 
 <style>
-  th[data-field="id"],
-  th[data-field="firstName"],
-  th[data-field="surname"],
-  th[data-field="email"],
-  th[data-field="mobile"] {
+  .dx-datagrid .dx-header-row .dx-header-row-lines .dx-column-header {
     color: blue;
   }
 </style>
 
-<h1>Job Candidate Details</h1>
+
+<h1 style="color: blue;">Job Candidate Details</h1>
 
 <div id="dataGrid"></div>
