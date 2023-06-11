@@ -1,3 +1,4 @@
+ <h1 style="color:blue;">Job Applicant Details</h1>
 <script>
 	import { onMount } from "svelte";
 	import "bootstrap/dist/css/bootstrap.min.css";
@@ -68,7 +69,7 @@
 			},
 		  },
 		  paging: {
-			pageSize: 20,
+			pageSize: 10,
 		  },
 		  onRowInserting: async (e) => {
 			console.log("Data being sent to API:", e.data);
@@ -97,18 +98,58 @@
 			  console.error("Failed to add record:", error);
 			}
 		  },
+               onRowUpdating: async (e) => {
+		        try {
+	           console.log(e);
+	
+                var newData = {
+               id : e.key.id,
+               firstName : e.newData.firstName === undefined ? e.oldData.firstName : e.newData.firstName ,
+               surname : e.newData.surname=== undefined ? e.oldData.surname : e.newData.surname ,
+               email : e.newData.email === undefined ? e.oldData.email : e.newData.email,
+                mobile : e.newData.mobile === undefined ? e.oldData.mobile :e.mobile.email,
+               }
+
+
+      console.log(newData)
+	  const response = await fetch(
+		`https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
+		{
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: JSON.stringify(newData),
+		}
+	  );
+	  const responseData = await response.json();
+	  if (response.ok) {
+		const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
+		gridData.push(e.newData);
+		gridData[updatedItemIndex] = e.newData;
+		dataGrid.refresh();
+	  } else {
+		console.error("Failed to update record:", responseData.error);
+	  }
+	} catch (error) {
+	  console.error("Failed to update record:", error);
+	}
+  },
   
+<<<<<<< HEAD
+		
+=======
 		  onRowUpdating: async (e) => {
-  console.log("Data sent to API:", e.newdata);
+  console.log("Data sent to API:", e.data);
   try {
     const response = await fetch(
-      `https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
+      `https://api.recruitly.io/api/candidate/?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(e.newdata),
+        body: JSON.stringify(e.data),
       }
     );
 
@@ -129,6 +170,7 @@
   }
 },
 
+>>>>>>> 4723dbbc86e057fb8f441c444f3f7571a114ef35
   
 		       onRowRemoving: async (e) => {
 			  console.log("Data being sent to API:", e.data);
